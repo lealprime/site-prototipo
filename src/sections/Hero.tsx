@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, Shield } from 'lucide-react';
+import { ArrowRight, Shield, Clock, Zap, Phone } from 'lucide-react';
 
 export default function Hero() {
   const imageRef = useRef<HTMLDivElement>(null);
@@ -60,10 +60,10 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             {/* Badge */}
             <div
               className={`inline-flex items-center gap-2 bg-yellow/10 border border-yellow/30 rounded-full px-4 py-2 transition-all duration-700 ${
@@ -131,12 +131,47 @@ export default function Hero() {
                 Ver Serviços
               </button>
             </div>
+
+            <div
+  className={`pt-8 border-t border-gray-800 transition-all duration-700 ${
+    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+  }`}
+  style={{ transitionDelay: '1s' }}
+>
+  <div className="grid grid-cols-3 gap-6">
+    
+    <div className="text-center">
+      <div className="flex items-center justify-center gap-2 mb-1">
+        <Clock className="w-5 h-5 text-yellow-400" />
+        <span className="text-2xl sm:text-3xl font-bold text-white">30-60min</span>
+      </div>
+      <p className="text-gray-500 text-sm">Tempo de resposta</p>
+    </div>
+
+    <div className="text-center border-x border-gray-800">
+      <div className="flex items-center justify-center gap-2 mb-1">
+        <Zap className="w-5 h-5 text-yellow-400" />
+        <span className="text-2xl sm:text-3xl font-bold text-white">24h</span>
+      </div>
+      <p className="text-gray-500 text-sm">Disponibilidade</p>
+    </div>
+
+    <div className="text-center">
+      <div className="flex items-center justify-center gap-2 mb-1">
+        <Phone className="w-5 h-5 text-yellow-400" />
+        <span className="text-2xl sm:text-3xl font-bold text-white">100%</span>
+      </div>
+      <p className="text-gray-500 text-sm">Garantia</p>
+    </div>
+
+  </div>
+</div>
           </div>
 
           {/* Hero Image */}
           <div
-            ref={imageRef}
-            className={`relative flex justify-center lg:justify-end transition-all duration-1000 ${
+            ref={imageRef}className={`relative hidden md:flex justify-center lg:justify-end transition-all duration-1000 ${
+            
               isVisible
                 ? 'opacity-100 translate-x-0'
                 : 'opacity-0 translate-x-12'
@@ -157,7 +192,7 @@ export default function Hero() {
               <img
                 src="/images/electrician-hero.png"
                 alt="Eletricista Profissional"
-                className="relative z-10 w-full max-w-md lg:max-w-lg h-auto drop-shadow-2xl"
+                className="relative z-10 w-full max-w-sm lg:max-w-md h-auto drop-shadow-2xl"
               />
             </div>
           </div>

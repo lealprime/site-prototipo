@@ -33,14 +33,14 @@ export default function About() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 bg-dark overflow-hidden">
+    <section ref={sectionRef} className="relative py-16 lg:py-20 bg-dark overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-yellow/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Image */}
           <div
             className={`relative transition-all duration-1000 ${
@@ -61,7 +61,7 @@ export default function About() {
               />
 
               {/* Image Container */}
-              <div className="relative rounded-2xl overflow-hidden">
+              <div className="relative rounded-2xl overflow-hidden max-w-sm mx-auto lg:max-w-md">
                 <img
                   src="/images/carlos-silva.jpg"
                   alt="Carlos Silva - Eletricista Profissional"
@@ -96,7 +96,7 @@ export default function About() {
               }`}
               style={{ transitionDelay: '400ms' }}
             >
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-gray-100 text-base leading-relaxed">
                 Olá, eu sou o <span className="text-yellow font-semibold">Carlos Silva</span>{' '}
                 — eletricista licenciado com mais de 10 anos de experiência
                 atendendo toda a região metropolitana de São Paulo. Fundei a

@@ -51,6 +51,7 @@ const services = [
 export default function Services() {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [visibleCount, setVisibleCount] = useState(6);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -85,12 +86,10 @@ export default function Services() {
       className="relative py-24 bg-dark"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Header */}
         <div
           className={`text-center mb-16 transition-all duration-700 ${
-            isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
+            isVisible ? 'opacity-100' : 'opacity-0'
           }`}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
@@ -102,26 +101,24 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
+        {/* Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          {services.slice(0, visibleCount).map((service, index) => (
             <div
               key={service.title}
-              className={`group relative bg-dark-50 border border-dark-200 rounded-2xl p-6 transition-all duration-700 cursor-pointer ${
-                isVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-8'
+              className={`group relative bg-dark-50 border border-dark-200 rounded-2xl p-2 transition-all duration-500 cursor-pointer ${
+                isVisible ? 'opacity-100' : 'opacity-0'
               } ${
                 hoveredIndex === index
-                  ? 'border-yellow/50 scale-[1.02]'
+                  ? 'border-yellow/50'
                   : 'hover:border-yellow/30'
               }`}
-              style={{ transitionDelay: `${index * 100 + 200}ms` }}
+              style={{ transitionDelay: `${index * 80}ms` }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               onClick={scrollToSection}
             >
-              {/* Circuit Pattern Background */}
+              {/* Background */}
               <div className="absolute inset-0 rounded-2xl overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <svg
                   className="absolute inset-0 w-full h-full"
@@ -141,46 +138,68 @@ export default function Services() {
                     strokeWidth="1"
                     fill="none"
                   />
-                  <circle
-                    cx="120"
-                    cy="130"
-                    r="4"
-                    fill="rgba(245, 197, 24, 0.2)"
-                  />
-                  <circle
-                    cx="320"
-                    cy="200"
-                    r="4"
-                    fill="rgba(245, 197, 24, 0.2)"
-                  />
                 </svg>
               </div>
 
               {/* Icon */}
-              <div className="relative w-12 h-12 bg-yellow/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-yellow/20 transition-all duration-300">
+              <div className="relative w-9 h-9 bg-yellow/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-yellow/20 transition-all duration-300">
                 <service.icon className="w-6 h-6 text-yellow transition-transform duration-500 group-hover:scale-110" />
               </div>
 
               {/* Content */}
-              <div className="relative">
+              <div>
                 <h3 className="text-white text-lg font-semibold mb-3 group-hover:text-yellow transition-colors duration-300">
                   {service.title}
                 </h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                <p className="text-gray-400 text-sm mb-4">
                   {service.description}
                 </p>
 
-                {/* Learn More Link */}
-                <div className="flex items-center gap-2 text-yellow text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                <div className="flex items-center gap-2 text-yellow text-sm font-medium opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <span>Saiba mais</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-
-              {/* Border Glow */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow/0 via-yellow/10 to-yellow/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
             </div>
           ))}
+        </div>
+
+        {/* Ver mais */}
+        {visibleCount < services.length && (
+          <div className="text-center mt-8">
+            <button
+              onClick={() => setVisibleCount((prev) => prev + 6)}
+              className="bg-yellow text-dark font-semibold px-6 py-3 rounded-lg text-sm inline-flex items-center gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            >
+              Ver mais
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        {/* CTA */}
+        <div
+          className={`mt-12 transition-all duration-700 ${
+            isVisible ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <div className="bg-dark-50 border border-dark-200 rounded-xl p-4 max-w-2xl mx-auto text-center">
+            <h3 className="text-lg lg:text-xl font-semibold text-white mb-2">
+              Não encontrou seu problema?
+            </h3>
+
+            <p className="text-gray-400 text-sm mb-4">
+              Fale agora comigo e descubra como posso te ajudar.
+            </p>
+
+            <button
+              onClick={scrollToSection}
+              className="bg-yellow text-dark font-semibold px-6 py-3 rounded-lg text-sm flex items-center justify-center mx-auto gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            >
+              Fale agora comigo
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
     </section>

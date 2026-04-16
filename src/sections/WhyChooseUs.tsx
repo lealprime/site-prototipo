@@ -62,7 +62,7 @@ export default function WhyChooseUs() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-24 bg-dark overflow-hidden"
+      className="relative py-16 bg-dark overflow-hidden"
     >
       {/* Gradient Background */}
       <div className="absolute inset-0">
@@ -106,7 +106,7 @@ export default function WhyChooseUs() {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className={`group relative bg-dark-50 border border-dark-200 rounded-2xl p-6 transition-all duration-700 hover:border-yellow/50 hover:-translate-y-2 ${
+              className={`group relative bg-dark-50 border border-dark-200 rounded-2xl p-4 transition-all duration-700 hover:border-yellow/50 hover:-translate-y-2 ${
                 isVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-8'
@@ -114,7 +114,7 @@ export default function WhyChooseUs() {
               style={{ transitionDelay: `${index * 100 + 200}ms` }}
             >
               {/* Icon */}
-              <div className="w-14 h-14 bg-yellow/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-yellow/20 transition-colors duration-300">
+              <div className="w-10 h-10 bg-yellow/10 rounded-xl flex items-center justify-center mb-3 group-hover:bg-yellow/20 transition-colors duration-300">
                 <feature.icon className="w-7 h-7 text-yellow transition-transform duration-500 group-hover:rotate-12" />
               </div>
 

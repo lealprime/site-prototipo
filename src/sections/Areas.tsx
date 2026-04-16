@@ -42,7 +42,7 @@ export default function Areas() {
     <section
       id="areas"
       ref={sectionRef}
-      className="relative py-24 bg-dark overflow-hidden"
+      className="relative py-16 bg-dark overflow-hidden"
     >
       {/* Background Decoration */}
       <div className="absolute inset-0">
@@ -73,12 +73,12 @@ export default function Areas() {
           {areas.map((area, index) => (
             <div
               key={area}
-              className={`group flex items-center gap-3 bg-dark-50 border border-dark-200 rounded-xl px-5 py-4 transition-all duration-500 hover:border-yellow/50 hover:bg-yellow/5 cursor-default ${
+              className={`group flex items-center gap-3 bg-dark-50 border border-dark-200 rounded-xl px-3 py-3 transition-all duration-500 hover:border-yellow/50 hover:bg-yellow/5 cursor-default ${
                 isVisible
                   ? 'opacity-100 scale-100'
                   : 'opacity-0 scale-90'
               }`}
-              style={{ transitionDelay: `${index * 50 + 200}ms` }}
+              style={{ transitionDelay: `${index * 5 + 20}ms` }}
             >
               <div className="w-8 h-8 bg-yellow/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-yellow/20 transition-colors duration-300">
                 <MapPin className="w-4 h-4 text-yellow" />
@@ -188,7 +188,7 @@ export default function Areas() {
 
             {/* Content */}
             <div className="relative z-10 text-center">
-              <div className="inline-flex items-center gap-2 bg-yellow/10 border border-yellow/30 rounded-full px-4 py-2 mb-4">
+              <div className="inline-flex items-center gap-2 bg-yellow/10 border border-yellow/30 rounded-full px-4 py-1 mb-2">
                 <MapPin className="w-4 h-4 text-yellow" />
                 <span className="text-yellow text-sm font-medium">
                   São Paulo e Região Metropolitana

@@ -15,46 +15,29 @@ import {
 const contactMethods = [
   {
     icon: Phone,
-    label: 'Ligar ou WhatsApp',
+    label: 'Ligar agora',
     value: '(11) 99999-9999',
     href: 'tel:+5511999999999',
-    color: 'bg-green-500/10 text-green-500',
   },
   {
     icon: MessageCircle,
-    label: 'WhatsApp Direto',
-    value: 'Chamar no WhatsApp',
+    label: 'Chamar no WhatsApp',
+    value: 'Atendimento imediato',
     href: 'https://wa.me/5511999999999',
-    color: 'bg-green-500/10 text-green-500',
-    isWhatsApp: true,
+    isExternal: true,
   },
   {
     icon: Mail,
     label: 'Enviar e-mail',
     value: 'contato@carloseletrica.com',
     href: 'mailto:contato@carloseletrica.com',
-    color: 'bg-yellow/10 text-yellow',
-  },
-  {
-    icon: Instagram,
-    label: 'Siga no Instagram',
-    value: '@carloseletrica',
-    href: 'https://instagram.com/carloseletrica',
-    color: 'bg-pink-500/10 text-pink-500',
-  },
-  {
-    icon: Facebook,
-    label: 'Curta no Facebook',
-    value: '/carloseletrica',
-    href: 'https://facebook.com/carloseletrica',
-    color: 'bg-blue-500/10 text-blue-500',
   },
 ];
 
 const businessHours = [
   { day: 'Segunda a Sexta', hours: '7h às 19h' },
   { day: 'Sábado', hours: '8h às 14h' },
-  { day: 'Domingo', hours: 'Fechado' },
+  { day: 'Domingo', hours: 'Emergências', destaque: true },
 ];
 
 const locations = [
@@ -82,10 +65,7 @@ export default function Contact() {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -99,169 +79,159 @@ export default function Contact() {
     <section
       id="agendamento"
       ref={sectionRef}
-      className="relative py-24 bg-dark overflow-hidden"
+      className="relative py-24 bg-dark"
     >
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-yellow/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
         <div
           className={`text-center mb-16 transition-all duration-700 ${
-            isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
+            isVisible ? 'opacity-100' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
             Agendamento <span className="text-yellow">& Contato</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Entre em contato conosco para agendar seu serviço ou tirar dúvidas.
-            Estamos prontos para atender você!
+            Entre em contato agora e resolva seu problema com rapidez e segurança.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
-          {/* Contact Methods */}
-          <div
-            className={`space-y-4 transition-all duration-700 ${
-              isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-8'
-            }`}
-            style={{ transitionDelay: '200ms' }}
-          >
-            <h3 className="text-white text-xl font-semibold mb-0">
-              Contato Direto
-            </h3>
+        <div className="grid lg:grid-cols-2 gap-6 items-start">
 
-            <div className="space-y-3">
+          {/* LEFT */}
+          <div className="space-y-6 flex flex-col justify-between h-full">
+
+            {/* Title */}
+            <div>
+              <h3 className="text-white text-xl font-semibold">
+                Contato Direto
+              </h3>
+
+              <p className="text-gray-400 text-sm mt-2 max-w-sm">
+                Fale comigo agora e receba um retorno rápido para resolver seu problema sem complicação.
+              </p>
+            </div>
+
+            {/* Contact Cards */}
+            <div className="space-y-4">
               {contactMethods.map((method, index) => (
                 <a
-                  key={method.label}
+                  key={index}
                   href={method.href}
-                  target={method.isWhatsApp ? '_blank' : undefined}
-                  rel={method.isWhatsApp ? 'noopener noreferrer' : undefined}
-                  className={`group flex items-center justify-between bg-dark-50 border border-dark-200 rounded-xl p-4 transition-all duration-500 hover:border-yellow/50 ${
-                    isVisible
-                      ? 'opacity-100 translate-x-0'
-                      : 'opacity-0 -translate-x-8'
+                  target={method.isExternal ? '_blank' : undefined}
+                  rel={method.isExternal ? 'noopener noreferrer' : undefined}
+                  className={`group flex items-center justify-between bg-dark-50 border border-dark-200 rounded-xl p-4 hover:border-yellow/40 transition ${
+                    isVisible ? 'opacity-100' : 'opacity-0 translate-y-8'
                   }`}
-                  style={{ transitionDelay: `${index * 100 + 300}ms` }}
                 >
                   <div className="flex items-center gap-4">
-                    <div
-                      className={`w-12 h-12 rounded-xl flex items-center justify-center ${method.color}`}
-                    >
-                      <method.icon className="w-5 h-5" />
+                    <div className="w-10 h-10 bg-yellow/10 rounded-xl flex items-center justify-center">
+                      <method.icon className="w-5 h-5 text-yellow" />
                     </div>
+
                     <div>
-                      <p className="text-gray-400 text-xs">{method.label}</p>
-                      <p className="text-white font-medium">{method.value}</p>
+                      <p className="text-gray-500 text-sm">{method.label}</p>
+                      <p className="text-white text-sm font-medium">{method.value}</p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    {!method.isWhatsApp && method.value.includes('@') && (
+                    {method.value.includes('@') && (
                       <button
                         onClick={(e) => {
                           e.preventDefault();
                           copyToClipboard(method.value);
                         }}
-                        className="p-2 text-gray-400 hover:text-yellow transition-colors duration-300"
+                        className="p-2 text-gray-400 hover:text-yellow"
                       >
                         {copiedText === method.value ? (
-                          <Check className="w-4 h-4" />
+                          <Check className="w-4 h-4 text-green-500" />
                         ) : (
                           <Copy className="w-4 h-4" />
                         )}
                       </button>
                     )}
-                    <ExternalLink className="w-4 h-4 text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    <ExternalLink className="w-4 h-4 text-gray-500 group-hover:text-yellow transition" />
                   </div>
                 </a>
               ))}
             </div>
+
+            {/* Social */}
+            <div className="bg-dark-50 border border-dark-200 rounded-xl p-4">
+              <p className="text-gray-500 text-xs mb-4">Redes sociais</p>
+
+              <div className="flex gap-4">
+                <a className="flex items-center gap-3 flex-1 bg-dark border border-dark-200 rounded-lg p-2.5 hover:border-yellow/30 transition">
+                  <Instagram className="w-5 h-5 text-yellow" />
+                  <span className="text-white text-sm">@carloseletrica</span>
+                </a>
+
+                <a className="flex items-center gap-3 flex-1 bg-dark border border-dark-200 rounded-lg p-2.5 hover:border-yellow/30 transition">
+                  <Facebook className="w-5 h-5 text-yellow" />
+                  <span className="text-white text-sm">/carloseletrica</span>
+                </a>
+              </div>
+            </div>
+
           </div>
 
-          {/* Business Hours & Location - Alinhados */}
-          <div className="space-y-4 mt-11 flex flex-col justify-start h-full">
-            {/* Business Hours */}
-            <div
-              className={`bg-dark-50 border border-dark-200 rounded-2xl p-6 transition-all duration-700 ${
-                isVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-8'
-              }`}
-              style={{ transitionDelay: '400ms' }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-yellow/10 rounded-xl flex items-center justify-center">
+          {/* RIGHT */}
+          <div className="space-y-4 mt-6 lg:mt-24">
+
+            {/* Hours */}
+            <div className="bg-dark-50 border border-dark-200 rounded-xl p-5">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 bg-yellow/10 rounded-lg flex items-center justify-center">
                   <Clock className="w-5 h-5 text-yellow" />
                 </div>
-                <h3 className="text-white text-lg font-semibold">
+                <h3 className="text-white font-semibold">
                   Horários de Atendimento
                 </h3>
               </div>
 
-              <div className="space-y-3">
-                {businessHours.map((item) => (
-                  <div
-                    key={item.day}
-                    className="flex justify-between items-center py-2 border-b border-dark-200 last:border-0"
-                  >
-                    <span className="text-gray-400 text-sm">{item.day}</span>
-                    <span
-                      className={`text-sm font-medium ${
-                        item.hours === 'Fechado'
-                          ? 'text-red-400'
-                          : 'text-white'
-                      }`}
-                    >
-                      {item.hours}
-                    </span>
-                  </div>
-                ))}
-              </div>
+              {businessHours.map((item, i) => (
+                <div
+                  key={i}
+                  className="flex justify-between py-2 border-b border-dark-200 last:border-0"
+                >
+                  <span className="text-gray-400 text-sm">{item.day}</span>
+                  <span className={`text-sm font-medium ${
+                    item.destaque ? 'text-yellow' : 'text-white'
+                  }`}>
+                    {item.hours}
+                  </span>
+                </div>
+              ))}
             </div>
 
             {/* Location */}
-            <div
-              className={`bg-dark-50 border border-dark-200 rounded-2xl p-6 transition-all duration-700 ${
-                isVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-8'
-              }`}
-              style={{ transitionDelay: '500ms' }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-yellow/10 rounded-xl flex items-center justify-center">
+            <div className="bg-dark-50 border border-dark-200 rounded-xl p-5">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 bg-yellow/10 rounded-lg flex items-center justify-center">
                   <MapPin className="w-5 h-5 text-yellow" />
                 </div>
-                <h3 className="text-white text-lg font-semibold">
-                  Localização
-                </h3>
+                <h3 className="text-white font-semibold">Localização</h3>
               </div>
 
               <p className="text-gray-400 text-sm mb-4">
-                Atendemos em toda a Grande São Paulo e região metropolitana.
-                Serviço rápido e deslocamento incluso.
+                Atendimento rápido em toda a região. Deslocamento incluso.
               </p>
 
               <div className="flex flex-wrap gap-2">
-                {locations.map((location) => (
+                {locations.map((loc, i) => (
                   <span
-                    key={location}
-                    className="bg-dark-100 text-gray-300 text-xs px-3 py-1.5 rounded-full"
+                    key={i}
+                    className="bg-dark text-gray-300 text-xs px-3 py-1.5 rounded-full border border-dark-200"
                   >
-                    {location}
+                    {loc}
                   </span>
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </div>
