@@ -64,7 +64,7 @@ function StatItem({ value, label, suffix = '', delay }: StatItemProps) {
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <div className="text-4xl sm:text-5xl lg:text-6xl font-bold text-yellow mb-2">
+      <div className="text-4xl sm:text-5xl lg:text-4.5xl font-bold text-yellow mb-2">
         {value.includes('NR') ? value : `${count}${suffix}`}
       </div>
       <div className="text-gray-400 text-sm sm:text-base uppercase tracking-wider">
@@ -83,7 +83,7 @@ export default function Stats() {
   ];
 
   return (
-    <section className="relative py-16 bg-dark border-y border-dark-200">
+    <section className="relative py-10 bg-dark border-y border-dark-200">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div

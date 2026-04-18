@@ -3,8 +3,6 @@ import {
   Phone,
   MessageCircle,
   Mail,
-  Instagram,
-  Facebook,
   Clock,
   MapPin,
   Copy,
@@ -100,7 +98,7 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-6 items-start">
 
           {/* LEFT */}
-          <div className="space-y-6 flex flex-col justify-between h-full">
+          <div className="bg-dark-50 border border-dark-200 rounded-xl p-5 space-y-6">
 
             {/* Title */}
             <div>
@@ -121,7 +119,7 @@ export default function Contact() {
                   href={method.href}
                   target={method.isExternal ? '_blank' : undefined}
                   rel={method.isExternal ? 'noopener noreferrer' : undefined}
-                  className={`group flex items-center justify-between bg-dark-50 border border-dark-200 rounded-xl p-4 hover:border-yellow/40 transition ${
+                  className={`group flex items-center justify-between bg-dark-100 backdrop-blur border border-dark-400 rounded-xl p-4 hover:border-yellow/40 transition ${
                     isVisible ? 'opacity-100' : 'opacity-0 translate-y-8'
                   }`}
                 >
@@ -159,27 +157,12 @@ export default function Contact() {
               ))}
             </div>
 
-            {/* Social */}
-            <div className="bg-dark-50 border border-dark-200 rounded-xl p-4">
-              <p className="text-gray-500 text-xs mb-4">Redes sociais</p>
-
-              <div className="flex gap-4">
-                <a className="flex items-center gap-3 flex-1 bg-dark border border-dark-200 rounded-lg p-2.5 hover:border-yellow/30 transition">
-                  <Instagram className="w-5 h-5 text-yellow" />
-                  <span className="text-white text-sm">@carloseletrica</span>
-                </a>
-
-                <a className="flex items-center gap-3 flex-1 bg-dark border border-dark-200 rounded-lg p-2.5 hover:border-yellow/30 transition">
-                  <Facebook className="w-5 h-5 text-yellow" />
-                  <span className="text-white text-sm">/carloseletrica</span>
-                </a>
-              </div>
-            </div>
+          
 
           </div>
 
           {/* RIGHT */}
-          <div className="space-y-4 mt-6 lg:mt-24">
+          <div className="space-y-4">
 
             {/* Hours */}
             <div className="bg-dark-50 border border-dark-200 rounded-xl p-5">

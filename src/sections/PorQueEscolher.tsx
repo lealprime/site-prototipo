@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
 import {
   Award,
   Clock,
@@ -165,20 +164,6 @@ export default function PorQueEscolher() {
             <Shield className="w-3 h-3 text-yellow-400" />
             <span className="text-gray-400 text-sm">Segurança garantida</span>
           </div>
-        </div>
-
-        {/* CTA */}
-        <div className="reveal opacity-0 mt-8 text-center">
-          <button
-            onClick={() => {
-              const el = document.querySelector('#agendamento');
-              el?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold px-6 py-3 rounded-xl text-sm flex items-center justify-center mx-auto gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group"
-          >
-            Fale comigo agora
-            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
         </div>
       </div>
     </section>

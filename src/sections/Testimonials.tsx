@@ -1,32 +1,93 @@
 import { useEffect, useRef, useState } from 'react';
-import { Star, ChevronRight } from 'lucide-react';
+import { ChevronDown, ExternalLink, Star } from 'lucide-react';
 
 const testimonials = [
   {
     name: 'Fernanda Oliveira',
-    role: 'Residencial',
-    initial: 'F',
+    location: 'Vila Mariana, SP',
     rating: 5,
-    text: 'Excelente profissional! Resolveu o problema elétrico da minha casa em poucas horas. Super atencioso e pontual.',
+    text: 'Excelente profissional! Resolveu o problema elétrico da minha casa em poucas horas.',
+    date: '2 semanas atrás',
+    service: 'Reparo de chuveiro',
+    initial: 'F',
   },
   {
     name: 'Ricardo Mendes',
-    role: 'Comercial',
-    initial: 'R',
+    location: 'Pinheiros, SP',
     rating: 5,
-    text: 'Carlos trocou todo o quadro de distribuição do meu escritório. Trabalho limpo, organizado e com garantia. Recomendo!',
+    text: 'Carlos trocou todo o quadro do escritório. Trabalho limpo e organizado.',
+    date: '1 mês atrás',
+    service: 'Troca de quadro',
+    initial: 'R',
   },
   {
     name: 'Ana Paula Costa',
-    role: 'Residencial',
-    initial: 'A',
+    location: 'Moema, SP',
     rating: 5,
-    text: 'Ótimo atendimento. Instalou o ar-condicionado rapidamente e explicou tudo sobre a parte elétrica. Voltarei a contratar.',
+    text: 'Instalação rápida e bem feita. Explicou tudo com clareza.',
+    date: '3 semanas atrás',
+    service: 'Instalação de ar-condicionado',
+    initial: 'A',
+  },
+  {
+    name: 'João Silva',
+    location: 'Brooklin, SP',
+    rating: 5,
+    text: 'Atendimento emergencial muito rápido. Resolveu tudo na hora.',
+    date: '5 dias atrás',
+    service: 'Emergência 24h',
+    initial: 'J',
+  },
+  {
+    name: 'Maria Santos',
+    location: 'Jardins, SP',
+    rating: 5,
+    text: 'Instalação elétrica completa perfeita. Muito profissional.',
+    date: '2 meses atrás',
+    service: 'Instalação completa',
+    initial: 'M',
+  },
+  {
+    name: 'Pedro Henrique',
+    location: 'Santana, SP',
+    rating: 5,
+    text: 'Troca de tomadas rápida e segura.',
+    date: '1 semana atrás',
+    service: 'Troca de tomadas',
+    initial: 'P',
+  },
+  {
+    name: 'Luciana Ferreira',
+    location: 'Lapa, SP',
+    rating: 5,
+    text: 'Projeto de iluminação ficou excelente. Ambiente valorizado.',
+    date: '3 meses atrás',
+    service: 'Iluminação',
+    initial: 'L',
+  },
+  {
+    name: 'Marcos Vinícius',
+    location: 'Tatuapé, SP',
+    rating: 5,
+    text: 'Automação da casa perfeita. Tudo funcionando no celular.',
+    date: '1 mês atrás',
+    service: 'Automação',
+    initial: 'M',
+  },
+  {
+    name: 'Carolina Lima',
+    location: 'Itaim Bibi, SP',
+    rating: 5,
+    text: 'Manutenção preventiva essencial. Identificou riscos sérios.',
+    date: '2 semanas atrás',
+    service: 'Manutenção',
+    initial: 'C',
   },
 ];
 
 export default function Testimonials() {
   const [isVisible, setIsVisible] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,18 +101,20 @@ export default function Testimonials() {
       { threshold: 0.2 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current);
 
     return () => observer.disconnect();
   }, []);
+
+  const visibleTestimonials = showAll
+    ? testimonials
+    : testimonials.slice(0, 3);
 
   return (
     <section
       id="avaliacoes"
       ref={sectionRef}
-      className="relative py-24 bg-dark overflow-hidden"
+      className="relative py-24 bg-black overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0">
@@ -59,12 +122,10 @@ export default function Testimonials() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Header */}
         <div
           className={`text-center mb-16 transition-all duration-700 ${
-            isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
@@ -72,68 +133,92 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        {/* Testimonials Grid - 3 cards side by side */}
+        {/* Grid */}
         <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
+          {visibleTestimonials.map((item, index) => (
             <div
-              key={testimonial.name}
-              className={`bg-dark-50 border border-dark-200 rounded-2xl p-6 transition-all duration-700 hover:border-yellow/30 ${
+              key={index}
+              className={`bg-dark-50 border border-dark-200 rounded-2xl p-6 transition-all duration-500 hover:border-yellow/30 ${
                 isVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-8'
               }`}
               style={{ transitionDelay: `${index * 150 + 200}ms` }}
             >
-              {/* Header with avatar and info */}
-              <div className="flex items-center gap-4 mb-4">
-                {/* Avatar with initial */}
-                <div className="w-12 h-12 bg-yellow/20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-yellow text-lg font-bold">
-                    {testimonial.initial}
-                  </span>
-                </div>
-                
-                {/* Name and rating */}
-                <div className="flex-1">
-                  <h4 className="text-white font-semibold">
-                    {testimonial.name}
-                  </h4>
-                  {/* Rating stars */}
-                  <div className="flex gap-0.5">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 text-yellow fill-yellow"
-                      />
-                    ))}
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-yellow/20 rounded-full flex items-center justify-center">
+                    <span className="text-yellow font-bold">
+                      {item.initial}
+                    </span>
                   </div>
+
+                  <div>
+                    <h4 className="text-white text-sm font-semibold">
+                      {item.name}
+                    </h4>
+                    <p className="text-gray-500 text-xs">
+                      {item.location}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Nota com estrela */}
+                <div className="flex items-center gap-1">
+                  <Star className="w-4 h-4 text-yellow fill-yellow" />
+                  <span className="text-white text-sm font-medium">
+                    {item.rating}
+                  </span>
                 </div>
               </div>
 
-              {/* Testimonial text */}
-              <p className="text-gray-400 text-sm leading-relaxed">
-                "{testimonial.text}"
+              {/* Tag */}
+              <div className="mb-3">
+                <span className="text-xs text-yellow bg-yellow/10 px-2 py-1 rounded-full">
+                  {item.service}
+                </span>
+              </div>
+
+              {/* Texto */}
+              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                "{item.text}"
               </p>
+
+              {/* Data */}
+              <p className="text-gray-600 text-xs">{item.date}</p>
             </div>
           ))}
         </div>
 
-        {/* Google Reviews Link */}
+        {/* Botão */}
         <div
           className={`text-center mt-12 transition-all duration-700 ${
-            isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-8'
+            isVisible ? 'opacity-100' : 'opacity-0'
           }`}
-          style={{ transitionDelay: '600ms' }}
         >
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 text-yellow hover:underline transition-all duration-300"
-            onClick={(e) => e.preventDefault()}
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="border border-yellow/30 text-yellow px-8 py-3 rounded-lg hover:bg-yellow/10 transition-all flex items-center gap-2 mx-auto"
           >
-            <span>Ver todas as avaliações no Google</span>
-            <ChevronRight className="w-4 h-4" />
+            {showAll ? 'Ver menos avaliações' : 'Ver todas as avaliações'}
+            <ChevronDown
+              className={`w-5 h-5 transition-transform ${
+                showAll ? 'rotate-180' : ''
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Link */}
+        <div className="text-center mt-6">
+          <a
+            href="#contato"
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-yellow text-sm transition-colors"
+          >
+            Ver todas as avaliações no Google
+
+            <ExternalLink className="w-4 h-4" />
           </a>
         </div>
       </div>
