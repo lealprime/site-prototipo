@@ -42,8 +42,10 @@ export default function Areas() {
     <section
       id="areas"
       ref={sectionRef}
-      className="relative py-16 bg-dark overflow-hidden"
+      className="relative py-16 bg-black overflow-hidden"
     >
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-yellow-500/20 to-transparent" />
+      
       {/* Background Decoration */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-yellow/5 rounded-full blur-3xl" />

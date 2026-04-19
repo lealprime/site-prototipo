@@ -33,7 +33,7 @@ export default function About() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-16 lg:py-20 bg-dark overflow-hidden">
+    <section ref={sectionRef} className="relative py-16 lg:py-20 bg-black overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-yellow/5 rounded-full blur-3xl" />

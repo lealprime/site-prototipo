@@ -72,14 +72,14 @@ export default function Problems() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <span className="inline-block bg-red-500/10 text-red-400 text-sm font-medium px-4 py-2 rounded-full mb-4">
+          <span className="inline-block bg-yellow-500/10 text-yellow-400 text-sm font-medium px-4 py-2 rounded-full mb-4">
             PROBLEMAS COMUNS
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Você está passando por <span className="text-red-400">isso?</span>
+           Problemas elétricos? <span className="text-yellow-400">Resolvo rápido.</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Muitos brasileiros enfrentam esses problemas diariamente. A boa notícia é que temos a solução.
+           Atendo todos os tipos de emergências e serviços elétricos com rapidez e segurança
           </p>
         </div>
 
@@ -88,13 +88,13 @@ export default function Problems() {
           {problems.map((problem, index) => (
             <div
               key={problem.title}
-              className={`flex items-start gap-4 bg-dark-50 border border-dark-200 rounded-xl p-4 transition-all duration-500 hover:border-red-400/50 ${
+              className={`flex items-start gap-4 bg-dark-50 border border-dark-200 rounded-xl p-4 transition-all duration-500 hover:border-yellow-400/50 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{ transitionDelay: `${index * 5 + 20}ms` }}
             >
-              <div className="w-12 h-12 bg-red-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                <problem.icon className="w-6 h-6 text-red-400" />
+              <div className="w-12 h-12 bg-yellow-500/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <problem.icon className="w-6 h-6 text-yellow-400" />
               </div>
               <div>
                 <h3 className="text-white font-semibold mb-1">{problem.title}</h3>

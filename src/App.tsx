@@ -22,25 +22,26 @@ function App() {
         <Problems />
         <PorQueEscolher />
 
-      {/* CTA Banner */}
-      <CTABanner 
-        text="Entre em contato agora" 
-        subtext="Resposta em até 30 minutos para emergências" />
+        {/* CTA Banner */}
+        <CTABanner
+          text="Entre em contato agora"
+          subtext="Resposta em até 30 minutos para emergências" />
 
         <Services />
         <Areas />
 
-      {/* CTA Banner */}
-      <CTABanner 
-        text="Disponível hoje para atender você" 
-        subtext="Não espere seu problema piorar, entre em contato agora"/>
+        {/* CTA Banner */}
+        <CTABanner
+          text="Disponível hoje para atender você"
+          subtext="Não espere seu problema piorar, entre em contato agora" />
 
         <Testimonials />
 
-      {/* CTA Banner Compacto */}
-      <CTABanner variant="compact" />
-
         <About />
+
+        {/* CTA Banner Compacto */}
+        <CTABanner variant="compact" />
+
         <Contact />
       </main>
       <Footer />

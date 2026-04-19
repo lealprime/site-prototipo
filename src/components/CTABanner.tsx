@@ -14,7 +14,7 @@ export default function CTABanner({
 }: CTABannerProps) {
   if (variant === 'compact') {
     return (
-      <div className="bg-gradient-to-r from-yellow-500/10 via-black-100 to-black-100 border-y border-black-100 py-4">
+      <div className="bg-neutral-950 border-y border-gray-800 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex flex-wrap items-center justify-center gap-4 lg:gap-8">
             <div className="flex items-center gap-2 text-yellow-400">
@@ -38,7 +38,7 @@ export default function CTABanner({
   }
 
   return (
-    <div className="bg-gradient-to-r from-yellow-500/10 via-yellow-500/5 to-yellow-500/10 border-y border-yellow-500/20 py-8 lg:py-12">
+    <div className="bg-neutral-950 border-y border-gray-800 py-8 lg:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="text-center lg:text-left">
