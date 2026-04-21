@@ -7,7 +7,6 @@ import {
   Lightbulb,
   FileCheck,
   ArrowRight,
-  ChevronDown,
 } from 'lucide-react';
 
 const services = [
@@ -63,7 +62,6 @@ const services = [
 
 export default function Services() {
   const [isVisible, setIsVisible] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(8);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -91,21 +89,6 @@ export default function Services() {
     }
   };
 
-  const handleToggle = () => {
-    if (visibleCount >= services.length) {
-      setVisibleCount(8);
-
-      setTimeout(() => {
-        sectionRef.current?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }, 100);
-    } else {
-      setVisibleCount(services.length);
-    }
-  };
-
   return (
     <section
       id="servicos"
@@ -116,8 +99,10 @@ export default function Services() {
 
         {/* Header */}
         <div
-          className={`text-center mb-16 transition-all duration-700 ${
-            isVisible ? 'opacity-100' : 'opacity-0'
+          className={`text-center mb-16 transition-all duration-700 ease-out transform ${
+            isVisible
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-6'
           }`}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
@@ -129,23 +114,30 @@ export default function Services() {
         </div>
 
         {/* Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-          {services.slice(0, visibleCount).map((service, index) => (
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-6xl mx-auto">
+          {services.map((service, index) => (
             <div
               key={service.title}
-              className={`group relative rounded-xl p-4 transition-all duration-300 cursor-pointer hover:-translate-y-1 bg-dark-50 border border-gray-800 hover:border-yellow/30 ${
-                isVisible ? 'opacity-100' : 'opacity-0'
-              }`}
-              style={{ transitionDelay: `${index * 80}ms` }}
               onClick={scrollToSection}
+              className={`group relative rounded-xl p-3 md:p-4 cursor-pointer 
+              bg-dark-50 border border-gray-800 
+              transition-all duration-500 ease-out transform
+              hover:-translate-y-1 hover:border-yellow/30
+              active:scale-[0.98]
+              ${
+                isVisible
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Icon */}
-              <div className="w-12 h-12 bg-yellow/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-yellow/20 transition-colors">
-                <service.icon className="w-6 h-6 text-yellow group-hover:scale-110 transition-transform duration-500" />
+              <div className="w-12 h-12 bg-yellow/10 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300 group-hover:bg-yellow/20">
+                <service.icon className="w-6 h-6 text-yellow transition-transform duration-500 ease-out group-hover:scale-110" />
               </div>
 
               {/* Title */}
-              <h3 className="text-white font-semibold text-base mb-2 group-hover:text-yellow transition-colors duration-300">
+              <h3 className="text-white font-semibold text-base mb-2 transition-colors duration-300 group-hover:text-yellow">
                 {service.title}
               </h3>
 
@@ -155,27 +147,25 @@ export default function Services() {
               </p>
 
               {/* Saiba mais */}
-              <div className="mt-4 pt-4 border-t border-gray-800/50 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <div className="mt-4 pt-4 border-t border-gray-800/50 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
                 <div className="text-yellow text-sm font-medium flex items-center gap-2 group/btn">
                   <span>Saiba mais</span>
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        
-
         {/* CTA */}
         <div className="mt-12 text-center">
-          <p className="text-gray-400 mb-4">Não encontrou seu problema?</p>
+          <p className="text-gray-300 mb-4">Não encontrou seu problema?</p>
           <button
             onClick={scrollToSection}
-            className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold px-8 py-4 rounded-xl text-sm flex items-center justify-center mx-auto gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg group"
+            className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold px-8 py-4 rounded-xl text-sm flex items-center justify-center mx-auto gap-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] group"
           >
             Fale comigo agora
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </button>
         </div>
 

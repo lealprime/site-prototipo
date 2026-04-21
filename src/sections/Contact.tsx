@@ -119,7 +119,7 @@ export default function Contact() {
                   href={method.href}
                   target={method.isExternal ? '_blank' : undefined}
                   rel={method.isExternal ? 'noopener noreferrer' : undefined}
-                  className={`group flex items-center justify-between bg-dark-100 backdrop-blur border border-dark-400 rounded-xl p-4 hover:border-yellow/40 transition ${
+                  className={`group flex items-center justify-between bg-dark-100 backdrop-blur border border-dark-200 rounded-xl p-4 hover:border-yellow/40 transition ${
                     isVisible ? 'opacity-100' : 'opacity-0 translate-y-8'
                   }`}
                 >

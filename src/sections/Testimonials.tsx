@@ -104,6 +104,11 @@ export default function Testimonials() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             O que nossos <span className="text-yellow">clientes</span> dizem
           </h2>
+
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Clientes satisfeitos com atendimento rápido, seguro e de qualidade.
+          </p>
+
         </div>
 
         {/* Grid */}
