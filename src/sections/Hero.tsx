@@ -110,12 +110,11 @@ export default function Hero() {
             <div
               className={`border-t border-gray-800 transition-all duration-700 ease-out 
   -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 
-  mt-6 sm:mt-8 
-  h-[90px] sm:h-auto flex items-center ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+  mt-6 sm:mt-8 lg:mt-8 pt-4 sm:pt-8 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
               style={{ transitionDelay: '1s' }}
             >
-              <div className="grid grid-cols-3 gap-6 w-full">
+              <div className="grid grid-cols-3 gap-6">
 
                 <div className="text-center">
                   <div className="flex justify-center gap-2 mb-1">
@@ -141,38 +140,37 @@ export default function Hero() {
                   <p className="text-gray-500 text-sm">Garantia</p>
                 </div>
 
+              </div>
+            </div>
+          </div>
 
+          {/* Image */}
+          <div
+            ref={imageRef}
+            className={`relative hidden md:flex justify-center lg:justify-end transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+              }`}
+            style={{ transitionDelay: '0.5s' }}
+          >
+            <div
+              style={{
+                transform: `perspective(1000px) rotateY(${mousePosition.x}deg) rotateX(${-mousePosition.y}deg)`,
+                transition: 'transform 0.2s ease-out',
+              }}
+            >
+              <div className="absolute -inset-10 bg-yellow/20 rounded-full blur-3xl opacity-40" />
+
+              <img
+                src="/images/electrician-hero.png"
+                alt="Eletricista"
+                className="relative z-10 w-full max-w-sm lg:max-w-md drop-shadow-2xl"
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Image */}
-      <div
-        ref={imageRef}
-        className={`relative hidden md:flex justify-center lg:justify-end transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-          }`}
-        style={{ transitionDelay: '0.5s' }}
-      >
-        <div
-          style={{
-            transform: `perspective(1000px) rotateY(${mousePosition.x}deg) rotateX(${-mousePosition.y}deg)`,
-            transition: 'transform 0.2s ease-out',
-          }}
-        >
-          <div className="absolute -inset-10 bg-yellow/20 rounded-full blur-3xl opacity-40" />
-
-          <img
-            src="/images/electrician-hero.png"
-            alt="Eletricista"
-            className="relative z-10 w-full max-w-sm lg:max-w-md drop-shadow-2xl"
-          />
-        </div>
-      </div>
-    </div>
-      </div >
-
-    {/* Bottom Gradient */ }
-    < div className = "absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent" />
-    </section >
+      {/* Bottom Gradient */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark to-transparent" />
+    </section>
   );
 }
